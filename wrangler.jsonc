@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "shia-new",
+  "name": "shia-azer",
   "main": "worker.js",
   "compatibility_date": "2026-06-27",
   "assets": {
