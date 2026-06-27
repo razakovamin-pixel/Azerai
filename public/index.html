@@ -3803,7 +3803,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 // ═══════════════════════════════════════
 
 // Владелец сайта лично зашифрует этот ключ позже.
-const INTERNAL_TRANSLATE_KEY = "ВСТАВЬ СЮДА АПИ КЕЙ";
+const INTERNAL_TRANSLATE_KEY = "sk-smart-_eU79oohpMMo6XIlwWe0CJEh4CHIfCgQ4o3GiCBImRU";
 
 // ── State for lang modal ───────────────
 let _selectedInitialLang = 'ru';
@@ -5213,7 +5213,7 @@ async function renderDetail(id) {
       console.warn('Translation failed:', err);
 
       // If no Anthropic API key — try SmartAPI fallback
-      if (err && err.message === 'NO_API_KEY' && INTERNAL_TRANSLATE_KEY && INTERNAL_TRANSLATE_KEY !== 'ВСТАВЬ СЮДА АПИ КЕЙ') {
+      if (err && err.message === 'NO_API_KEY' && INTERNAL_TRANSLATE_KEY && INTERNAL_TRANSLATE_KEY !== 'sk-smart-_eU79oohpMMo6XIlwWe0CJEh4CHIfCgQ4o3GiCBImRU') {
         try {
           $('detBio').innerHTML = `<span class="ar-loading">${loadingMsg[state.lang] || 'Загрузка...'}</span>`;
           const [bioT, analysisT] = await Promise.all([
