@@ -30,9 +30,20 @@ export default {
     // 4. Если это обычный запрос (открытие сайта, загрузка файлов .json), 
     // отдаем файлы из папки public через системную привязку ASSETS
     try {
-      return await env.ASSETS.fetch(request);
+      const response = await env.ASSETS.fetch(request);
+      // Если файл найден — возвращаем его
+      if (response.status !== 404) return response;
+      // Файл не найден — отдаём index.html (SPA fallback)
+      const indexUrl = new URL('/index.html', url.origin);
+      return await env.ASSETS.fetch(new Request(indexUrl.toString(), request));
     } catch (assetsError) {
-      return new Response("Файл не найден на сервере", { status: 404 });
+      // Последняя попытка — index.html
+      try {
+        const indexUrl = new URL('/index.html', url.origin);
+        return await env.ASSETS.fetch(new Request(indexUrl.toString(), request));
+      } catch (e) {
+        return new Response("Файл не найден на сервере", { status: 404 });
+      }
     }
   },
 };
